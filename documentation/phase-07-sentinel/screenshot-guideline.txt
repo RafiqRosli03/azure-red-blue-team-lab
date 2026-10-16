@@ -1,0 +1,28 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 7: Microsoft Sentinel + Connectors
+================================================================
+Goal of these shots: prove Sentinel is enabled and ingesting Azure Activity.
+
+SHOTS TO TAKE
+  [ ] 1. Portal -> Microsoft Sentinel -> law-redblue-lab listed as an onboarded workspace.
+  [ ] 2. Sentinel -> Data connectors -> "Azure Activity" showing Connected.
+  [ ] 3. Sentinel -> Logs -> AzureActivity query returning live rows.
+  [ ] 4. (Pending) Data connectors page noting Defender connectors NOT yet connected
+         (honest status).
+
+HOW TO NAME THE FILES
+  phase07-01-sentinel-workspace.png
+  phase07-02-azure-activity-connector.png
+  phase07-03-azureactivity-logs.png
+  phase07-04-defender-connectors-pending.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID, Workspace/customer ID GUID, Tenant ID
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "Sentinel enabled on law-redblue-lab; Azure Activity connector live. Defender connectors
+  are a documented next step."
+================================================================

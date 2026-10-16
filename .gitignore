@@ -1,0 +1,46 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# Secrets / credentials — NEVER commit
+*.pem
+*.key
+*.pfx
+*.publishsettings
+.env
+.env.*
+*secret*
+*credential*
+azureauth.json
+
+# SSH keys
+id_rsa
+id_rsa.*
+*.ppk
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Lab SSH keypair (Phase 3) — NEVER commit the private key
+lab_ssh_key
+lab_ssh_key.*
+!lab_ssh_key.pub
+
+# Terraform plan output (binary, may contain resource details)
+tfplan
+*.tfplan

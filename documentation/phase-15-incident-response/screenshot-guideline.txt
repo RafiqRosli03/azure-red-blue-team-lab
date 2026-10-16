@@ -1,0 +1,32 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 15: Incident Response + Remediation
+================================================================
+Goal of these shots: prove you can run a structured IR process, not just ad-hoc reactions.
+(Phase pending — capture as you write the playbooks.)
+
+SHOTS TO TAKE (per incident / playbook)
+  [ ] 1. The Sentinel incident being triaged (status set to Active, owner assigned).
+  [ ] 2. Containment step executed (e.g. az container stop, or NSG rule change) + its effect.
+  [ ] 3. Eradication step (DB reset / credential rotation evidence).
+  [ ] 4. Recovery: service back to normal (victim reachable again on clean state).
+  [ ] 5. The incident closed with a classification (True Positive) + a lessons-learned note.
+  [ ] 6. The written playbook document itself (from incident-response/).
+
+HOW TO NAME THE FILES
+  phase15-01-incident-triage.png
+  phase15-02-containment.png
+  phase15-03-eradication.png
+  phase15-04-recovery.png
+  phase15-05-incident-closed.png
+  phase15-06-playbook-doc.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Workspace/customer ID GUID, Subscription ID, Tenant ID
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "Incident contained by stopping the victim container, then eradicated by DB reset +
+  credential rotation — full IR lifecycle."
+================================================================

@@ -1,0 +1,32 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 10: KQL Foundations
+================================================================
+Goal of these shots: prove you can hunt in the Activity Log with KQL.
+
+SHOTS TO TAKE (one per query, showing the query + its result)
+  [ ] 1. Baseline query: AzureActivity last 24h (know-your-normal).
+  [ ] 2. Resource-creation query (...WRITE + Success).
+  [ ] 3. NSG / firewall-change query.
+  [ ] 4. Failed-operations-burst query.
+  [ ] 5. (Advanced) New-source-IP-for-known-caller query.
+
+TIP: capture the KQL pane AND the results grid in the same shot so it's self-explanatory.
+
+HOW TO NAME THE FILES
+  phase10-01-baseline.png
+  phase10-02-resource-creation.png
+  phase10-03-nsg-changes.png
+  phase10-04-failed-ops-burst.png
+  phase10-05-new-source-ip.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID, Workspace GUID
+  - Your home/public IP if it appears in CallerIpAddress (blur it)
+  - Your account UPN/email in Caller if you prefer
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "NSG-change hunting query — detects anyone widening the perimeter. MITRE T1562.007."
+================================================================

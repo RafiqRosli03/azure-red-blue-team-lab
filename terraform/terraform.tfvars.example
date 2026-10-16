@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and edit. terraform.tfvars is gitignored.
+# Defaults target westus3 and the ACI container victim stack.
+
+prefix   = "redblue"
+location = "westus3"
+
+# subscription_id = "00000000-0000-0000-0000-000000000000"
+
+tags = {
+  project     = "azure-red-blue-team-lab"
+  environment = "lab"
+  owner       = "self"
+  cost-center = "personal-learning"
+}

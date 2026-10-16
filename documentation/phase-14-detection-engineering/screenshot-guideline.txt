@@ -1,0 +1,31 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 14: Sentinel Detection Engineering
+================================================================
+Goal of these shots: prove hunting queries became automatic alert rules.
+(Phase pending — capture as you build each rule.)
+
+SHOTS TO TAKE (per analytics rule)
+  [ ] 1. Sentinel -> Analytics -> the rule in the list, status Enabled.
+  [ ] 2. Rule config: the KQL query + schedule (frequency / lookback).
+  [ ] 3. Rule config: entity mappings (IP -> IP, Caller -> Account) and severity.
+  [ ] 4. Sentinel -> Incidents -> an incident the rule generated (after re-running the attack).
+  [ ] 5. The incident's entities/timeline view.
+
+HOW TO NAME THE FILES
+  phase14-01-rule-enabled.png
+  phase14-02-rule-query-schedule.png
+  phase14-03-entity-mappings.png
+  phase14-04-incident-generated.png
+  phase14-05-incident-detail.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Workspace/customer ID GUID, Subscription ID
+  - Keep private IPs (safe)
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "SQLi detection promoted to a scheduled analytics rule (High, T1190) — it raised an
+  incident automatically on the next attack."
+================================================================

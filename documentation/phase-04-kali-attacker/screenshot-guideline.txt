@@ -1,0 +1,29 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 4: Kali Attacker + Connectivity
+================================================================
+Goal of these shots: prove the attacker box is armed and can reach the victims.
+
+SHOTS TO TAKE
+  [ ] 1. Terminal: `az container exec ... aci-redblue-kali ... /bin/bash` opening the Kali prompt
+         (the "root@SandboxHost" banner).
+  [ ] 2. Inside Kali: `command -v nmap sqlmap hydra nikto curl` -> all tools resolve to /usr/bin.
+  [ ] 3. Inside Kali: reachability test ->
+         curl DVWA = 200, curl Juice Shop = 200.
+  [ ] 4. Inside Kali: `nmap -Pn -p 80 10.20.1.4` and `nmap -Pn -p 3000 10.20.1.5` (ports open).
+
+HOW TO NAME THE FILES
+  phase04-01-kali-shell.png
+  phase04-02-tools-installed.png
+  phase04-03-reachability-200.png
+  phase04-04-nmap-ports-open.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID if it shows in the exec command
+  - Private IPs are safe to show
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "Kali (10.20.2.4) reaches both victims through the NSG — full attack path verified."
+================================================================

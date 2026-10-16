@@ -1,0 +1,52 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 11-13: Attack -> Detect -> Investigate -> Respond
+================================================================
+This is the richest phase for evidence. Capture the FULL STORY of each exercise so a reader
+sees the attack happen AND the defender catch it. Below is the set for the SQLi exercise;
+repeat the same pattern for each later exercise (IDOR, etc.).
+
+--- MILESTONE (do this once) ---
+  [ ] 0. The proof the log pipeline works: the ContainerInstanceLog_CL query result showing
+         the full Apache line with KIRO_LOGTEST_001 + source IP + User-Agent.
+         FILE: phase11-00-logpipeline-proof.png
+
+--- A) ATTACK (from Kali) ---
+  [ ] 1. Baseline request-count query (BEFORE the attack) — the "normal" number.
+  [ ] 2. Manual injection ' OR '1'='1 returning multiple rows (injectable proof).
+  [ ] 3. sqlmap --dbs output (databases enumerated).
+  [ ] 4. sqlmap -T users --dump output (credential table dumped) — the impact shot.
+
+--- B) DETECT (in Sentinel) ---
+  [ ] 5. Payload-signature KQL + results (UNION/SELECT/OR 1=1 hits).
+  [ ] 6. sqlmap User-Agent KQL + results.
+  [ ] 7. Volume-spike KQL + timechart showing the burst vs baseline.
+
+--- C) INVESTIGATE ---
+  [ ] 8. Timeline KQL (first probe -> enumeration -> dump, in order).
+  [ ] 9. Source-IP attribution (10.20.2.4 = Kali).
+  [ ] 10. AzureActivity pivot-check (no control-plane escalation).
+
+--- D) RESPOND ---
+  [ ] 11. Containment action (az container stop, or NSG rule tightened).
+  [ ] 12. Hardening note (parameterized queries / WAF / raised security level).
+
+HOW TO NAME THE FILES
+  phase11-00-logpipeline-proof.png
+  phase11-A1-baseline.png ... phase11-A4-sqlmap-dump.png
+  phase11-B5-signature.png ... phase11-B7-volume-timechart.png
+  phase11-C8-timeline.png ... phase11-C10-activity-pivot.png
+  phase11-D11-contain.png / phase11-D12-harden.png
+
+WHERE TO SAVE
+  ./screenshots/sqli/    (here in this phase folder; one subfolder per exercise, e.g. ./screenshots/idor/)
+
+REDACT BEFORE SAVING
+  - Workspace/customer ID GUID, Subscription ID
+  - Private IPs (10.20.x.x) are SAFE to show (they're the whole point of the attribution shot)
+  - The dumped password hashes are from DVWA defaults — safe, but note they're lab creds
+
+CAPTION TO WRITE UNDER EACH
+  Tell the story, e.g.:
+  A3: "sqlmap dumps the dvwa.users table — simulated credential theft (OWASP A03 / MITRE T1190)."
+  B7: "Sentinel shows a request burst 40x over baseline from a single source — the attack is visible."
+================================================================

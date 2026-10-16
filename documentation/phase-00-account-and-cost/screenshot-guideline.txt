@@ -1,0 +1,30 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 0: Azure Account + Budget + Cost Guardrails
+================================================================
+Goal of these shots: prove the lab is cost-controlled before any billable resource exists.
+
+SHOTS TO TAKE
+  [ ] 1. Azure portal home -> Subscriptions -> your subscription Overview
+         (shows the subscription is active). 
+  [ ] 2. Cost Management -> Budgets -> your budget showing the amount + 50/80/100% alerts.
+  [ ] 3. Cost Management -> Cost analysis -> current spend (ideally near $0 at start).
+  [ ] 4. (If used) the free-account credit remaining banner.
+
+HOW TO NAME THE FILES
+  phase00-01-subscription-overview.png
+  phase00-02-budget-alerts.png
+  phase00-03-cost-analysis.png
+  phase00-04-credit-remaining.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING (blur or black box)
+  - Full Subscription ID (last segment is enough to show if needed)
+  - Tenant ID / Directory ID
+  - Your full email / account name if you prefer privacy
+  - Any billing / payment details
+
+CAPTION TO WRITE UNDER EACH (one line)
+  What it proves, e.g. "Budget set at $20 with 50/80/100% alerts — cost guardrail in place."
+================================================================

@@ -1,0 +1,33 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 16: Portfolio Packaging + Final Report
+================================================================
+Goal: this phase is mostly ASSEMBLY, not new capture. Collect the best shots from every
+earlier phase into one coherent story.
+
+SHOTS / ASSETS TO ASSEMBLE
+  [ ] 1. The architecture diagram (from architecture/lab-architecture.drawio exported to PNG).
+  [ ] 2. One "hero" shot per phase (pick the single clearest screenshot already taken).
+  [ ] 3. A before/after pair for one exercise (clean baseline vs attack spike).
+  [ ] 4. The final report cover / summary page (from reports/).
+  [ ] 5. A phase-status table screenshot (from documentation/README.md) showing progress.
+
+HOW TO NAME THE FILES
+  phase16-01-architecture.png
+  phase16-02-phase-highlights/ (folder of the chosen hero shots)
+  phase16-03-attack-before-after.png
+  phase16-04-final-report-cover.png
+  phase16-05-status-table.png
+
+WHERE TO SAVE
+  ./screenshots/   (here in this phase folder) — and reference them from reports/
+
+FINAL REDACTION PASS (do this across ALL screenshots before publishing)
+  - Subscription ID, Tenant/Directory ID, Workspace/customer GUID
+  - Any key, token, password (except DVWA default lab creds, clearly labelled as such)
+  - Personal email / phone if you want privacy
+  - Private IPs 10.20.x.x are SAFE to keep (internal, non-routable)
+
+CAPTION STYLE FOR THE REPORT
+  Lead with the outcome, e.g. "Built an isolated Azure range, executed OWASP attacks from Kali,
+  and detected + responded to each using Sentinel KQL and analytics rules."
+================================================================

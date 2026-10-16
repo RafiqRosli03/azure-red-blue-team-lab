@@ -1,0 +1,28 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 1: Resource Group + Terraform Skeleton
+================================================================
+Goal of these shots: prove the lab is built as code and lives in one tear-downable container.
+
+SHOTS TO TAKE
+  [ ] 1. Terminal: `terraform init` success output (Terraform initialized).
+  [ ] 2. Terminal: `terraform apply` summary line (Apply complete! Resources: X added).
+  [ ] 3. Terminal: `terraform output` showing names/IPs/workspace.
+  [ ] 4. Portal -> Resource groups -> rg-redblue-lab Overview (region westus3).
+
+HOW TO NAME THE FILES
+  phase01-01-terraform-init.png
+  phase01-02-terraform-apply.png
+  phase01-03-terraform-output.png
+  phase01-04-resource-group-overview.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID in the terraform output / portal URL
+  - Any workspace primary key or shared key if it appears in output
+  - Tenant ID
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "One resource group holds the whole lab — single-command teardown for cost control."
+================================================================

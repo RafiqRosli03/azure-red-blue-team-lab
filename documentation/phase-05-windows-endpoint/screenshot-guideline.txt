@@ -1,0 +1,37 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 5: Windows Endpoint VM (BLOCKED -> quota requested)
+================================================================
+Goal of these shots: DOCUMENT THE BLOCKER honestly AND the action taken to unblock it.
+This phase is blocked on VM quota (=0); a quota increase has now been requested.
+
+SHOTS TO TAKE
+  [ ] 1. Portal -> Quotas -> My quotas -> filter "Bsv2" showing current limit = 0
+         (the reason the VM can't deploy). Close the request panel for a clean view.
+  [ ] 2. (If attempted) the VM-create error / quota-exceeded message.
+  [x] 3. The New Quota Request panel you submitted (Bsv2, West US 3, new total limit).  DONE
+  [x] 4. The request result panel showing "Unsuccessful: 1" — Azure DENIED the increase.  DONE
+         This is the key evidence that justifies the container-based design.
+
+HOW TO NAME THE FILES
+  phase05-01-bsv2-quota-zero.png
+  phase05-02-vm-create-quota-error.png
+  phase05-03-quota-request.png                    <- captured
+  phase05-04-quota-request-unsuccessful.png       <- captured (the denial)
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID in portal URLs
+
+CAPTION TO WRITE UNDER EACH
+  shot 1: "Bsv2 vCPU quota = 0 on this PAYG subscription — the constraint that moved the whole
+           lab to containers."
+  shot 3: "Submitted a quota increase request (Bsv2, West US 3) to try to unblock the endpoint."
+  shot 4: "Azure returned Unsuccessful — request denied. This constraint is exactly why the lab
+           runs on containers instead of VMs."
+
+NOTE: Documenting both the blocker AND the action you took to resolve it is strong portfolio
+practice — it shows you understood the constraint, made a reasoned decision to defer, and then
+followed through to unblock it.
+================================================================

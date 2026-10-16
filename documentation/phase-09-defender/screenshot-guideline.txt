@@ -1,0 +1,33 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 9: Defender for Cloud + Defender for Endpoint/XDR
+================================================================
+Goal of these shots: prove posture management is on and capture the honest coverage gaps.
+(Phase pending — capture as you build.)
+
+SHOTS TO TAKE
+  [ ] 1. Microsoft Defender for Cloud -> Overview -> Secure Score for the subscription.
+  [ ] 2. Defender for Cloud -> Recommendations -> top findings for rg-redblue-lab.
+  [ ] 3. Defender for Cloud -> Environment settings -> free CSPM tier ON (paid plans OFF unless
+         in trial).
+  [ ] 4. (When endpoint exists) Defender XDR / Security Center -> device onboarded.
+  [ ] 5. HONEST GAP shot: a note/doc stating app-layer SQLi is NOT caught by Defender without
+         web-log collection.
+
+HOW TO NAME THE FILES
+  phase09-01-secure-score.png
+  phase09-02-recommendations.png
+  phase09-03-cspm-tier-on.png
+  phase09-04-endpoint-onboarded.png
+  phase09-05-coverage-gap-note.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID, Tenant ID
+  - Device names / serials if a real endpoint is onboarded
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "Free CSPM on — secure score + recommendations. Note: DfC flags posture, not the SQLi
+  payload itself (documented gap)."
+================================================================

@@ -1,0 +1,29 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 6: Log Analytics Workspace + Logs
+================================================================
+Goal of these shots: prove the central log store exists and is receiving data.
+
+SHOTS TO TAKE
+  [ ] 1. Portal -> Log Analytics workspaces -> law-redblue-lab Overview.
+  [ ] 2. Terminal: workspace GUID command output (the $ws value).
+  [ ] 3. Terminal: ContainerInstanceLog_CL row-count-by-container query showing rows from
+         all three containers (kali / juiceshop / dvwa).
+  [ ] 4. Logs blade: a simple `AzureActivity | take 10` returning rows.
+
+HOW TO NAME THE FILES
+  phase06-01-law-overview.png
+  phase06-02-workspace-guid.png
+  phase06-03-containerlog-rowcounts.png
+  phase06-04-azureactivity-rows.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING (IMPORTANT)
+  - Workspace ID / customerId GUID (blur it — it's a secret-ish identifier)
+  - Subscription ID
+  - Any primary/shared key
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "law-redblue-lab receiving container logs from all three ACI groups — telemetry backbone live."
+================================================================

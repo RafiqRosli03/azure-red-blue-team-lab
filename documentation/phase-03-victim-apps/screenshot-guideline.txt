@@ -1,0 +1,28 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 3: Victim Apps (DVWA + Juice Shop) on ACI
+================================================================
+Goal of these shots: prove both vulnerable apps run as PRIVATE containers.
+
+SHOTS TO TAKE
+  [ ] 1. Terminal: `az container list -g rg-redblue-lab --query "[].{name:name, ip:ipAddress.ip,
+         type:ipAddress.type}" -o table` -> DVWA + Juice Shop, both Private.
+  [ ] 2. Portal -> Container instances -> aci-redblue-dvwa Overview (Private IP 10.20.1.4, port 80).
+  [ ] 3. Portal -> Container instances -> aci-redblue-juiceshop Overview (10.20.1.5, port 3000).
+  [ ] 4. From Kali: `curl -I http://10.20.1.4/` and `curl -I http://10.20.1.5:3000/` responses.
+
+HOW TO NAME THE FILES
+  phase03-01-container-list-private.png
+  phase03-02-dvwa-overview.png
+  phase03-03-juiceshop-overview.png
+  phase03-04-kali-curl-victims.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID in portal URLs
+  - Private IPs (10.20.x.x) are safe to show
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "Both victim apps deployed PRIVATE on ACI — no public IP, reachable only inside the VNet."
+================================================================

@@ -1,0 +1,34 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 8: Entra ID (RBAC / MFA / Conditional Access)
+================================================================
+Goal of these shots: prove the identity layer is hardened. MFA is now ON via Security Defaults.
+
+SHOTS TO TAKE
+  [x] 1. Sign-in logs BEFORE: "Conditional access: Not applied" — the gap we found.  DONE
+  [x] 2. Entra ID -> Properties -> Manage security defaults -> "Your organization is protected
+         by security defaults" (green check) — MFA now enforced.  DONE
+  [ ] 3. (After next sign-in) Sign-in logs showing "Multifactor authentication" in the
+         Authentication requirement column — proves MFA actually challenged.
+  [ ] 4. (Optional) `az role assignment list --all -o table` — RBAC review.
+
+HOW TO NAME THE FILES
+  phase08-01-signin-logs-no-mfa.png          <- captured (the before/gap)
+  phase08-02-security-defaults-enabled.png   <- captured (the fix)
+  phase08-03-signin-logs-mfa.png             <- take after next sign-in + MFA registration
+  phase08-04-rbac-assignments.png            <- optional
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING (IMPORTANT — identity data)
+  - Tenant ID / Directory ID
+  - Object IDs and full UPNs/emails (blur, or keep just the display name)
+  - Phone numbers / auth method details
+  - IP address in sign-in logs (e.g. 219.92.x.x) — it's your real public IP
+  - Location detail if you prefer privacy
+
+CAPTION TO WRITE UNDER EACH
+  shot 1: "Before: sign-ins showed Conditional access NOT applied — no MFA enforced (gap found)."
+  shot 2: "Fix: enabled Security Defaults — MFA now enforced tenant-wide."
+  shot 3: "After: sign-in shows Multifactor authentication — stolen passwords alone can't sign in."
+================================================================

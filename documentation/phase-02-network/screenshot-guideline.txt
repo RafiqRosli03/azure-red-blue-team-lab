@@ -1,0 +1,31 @@
+================================================================
+SCREENSHOT GUIDELINE — Phase 2: VNet / Subnets / NSGs (Private, Option A)
+================================================================
+Goal of these shots: prove the apps are isolated and only Kali can reach them.
+
+SHOTS TO TAKE
+  [ ] 1. Portal -> Virtual networks -> vnet-redblue-lab (address space 10.20.0.0/16).
+  [ ] 2. VNet -> Subnets: snet-aci (10.20.1.0/24) and snet-attacker (10.20.2.0/24),
+         both showing ACI delegation.
+  [ ] 3. NSG nsg-redblue-aci -> Inbound rules: ALLOW only from 10.20.2.0/24 to ports 80/3000;
+         deny all else.
+  [ ] 4. NSG nsg-redblue-attacker -> Inbound rules: deny all.
+  [ ] 5. (Optional) `terraform plan`/`apply` output showing the public->private transition.
+
+HOW TO NAME THE FILES
+  phase02-01-vnet-address-space.png
+  phase02-02-subnets-delegation.png
+  phase02-03-nsg-aci-inbound-rules.png
+  phase02-04-nsg-attacker-inbound.png
+  phase02-05-terraform-network.png
+
+WHERE TO SAVE
+  ./screenshots/   (the screenshots folder right here in this phase folder)
+
+REDACT BEFORE SAVING
+  - Subscription ID in portal URLs
+  - Nothing else sensitive here (private IPs 10.20.x.x are safe to show)
+
+CAPTION TO WRITE UNDER EACH
+  e.g. "NSG permits attacker subnet -> victim ports only. No internet ingress anywhere."
+================================================================
