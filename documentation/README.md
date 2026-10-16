@@ -52,7 +52,7 @@ Legend: ✅ done · 🟡 partial · ⏳ in progress · ⛔ blocked · ⬜ pendin
 | [11-13](phase-11-13-attack-detect-respond/) | Attack → detect → investigate → respond exercise | ✅ done | **SQLi exercise COMPLETE** — full A→B→C→D cycle, verified. (Scope: one representative exercise, per the SOC goal.) |
 | [14](phase-14-detection-engineering/) | Sentinel detection engineering | ✅ done | Built a scheduled analytics rule that fired High incidents automatically, then tuned it (150→1). |
 | [15](phase-15-incident-response/) | Incident response + remediation | ✅ done | Full IR lifecycle executed on the SQLi incident: triage → contain → eradicate → recover → lessons. |
-| [16](phase-16-portfolio/) | Portfolio packaging + final report | ⬜ pending | Package the evidence into a shareable write-up. |
+| [16](phase-16-portfolio/) | Portfolio packaging + final report | ✅ done | Published to GitHub with architecture diagram; final report at `reports/final-report.md`. |
 
 > **Change from the earlier plan:** Phases 11–13 were listed as *"blocked on ACI log pipeline."*
 > That blocker is now **cleared** — we proved DVWA's web logs reach Sentinel this session (see
@@ -83,7 +83,7 @@ Every phase README follows the same shape:
 5. **Next** — where to go next.
 
 Shared placeholders:
-- `$ws` = Log Analytics workspace GUID (`5f251dad-c3ae-4cbf-ae8c-88ec26ff4be0`).
+- `$ws` = Log Analytics workspace GUID (`<your-workspace-guid>` — redacted; set at runtime).
 - Private IPs: DVWA `10.20.1.4`, Juice Shop `10.20.1.5`, Kali `10.20.2.4`.
 - Everything lives in resource group `rg-redblue-lab`, region `westus3`.
 

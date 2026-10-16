@@ -20,7 +20,7 @@ this one workspace. Two feeds matter:
 ## Verify — grab the workspace GUID (this is `$ws`, used everywhere)
 ```powershell
 $ws = az monitor log-analytics workspace show -g rg-redblue-lab -n law-redblue-lab --query customerId -o tsv
-$ws   # -> 5f251dad-c3ae-4cbf-ae8c-88ec26ff4be0
+$ws   # -> <your-workspace-guid>  (redacted)
 ```
 
 Confirm data is arriving:
