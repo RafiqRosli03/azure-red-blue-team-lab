@@ -13,20 +13,21 @@ Blue Team (detect / investigate / respond) learning using the Microsoft security
 
 ## What this lab demonstrates
 
-- **Red Team:** reconnaissance and web-app exploitation from a local Kali Linux VM against
-  intentionally vulnerable apps (DVWA + OWASP Juice Shop) running in Azure.
+- **Red Team:** reconnaissance and web-app exploitation from an in-VNet Kali Linux container
+  against intentionally vulnerable apps (DVWA + OWASP Juice Shop) running as private ACI in Azure.
 - **Blue Team:** detection, investigation, and response using Microsoft Defender for Cloud,
   Defender for Endpoint, Defender XDR, Microsoft Sentinel, Entra ID logs, and KQL.
 - **Detection engineering:** turning hunting queries into Sentinel analytics rules with
   MITRE ATT&CK and OWASP mappings.
 
-## Tier & cost model
+## Cost model
 
-- **Tier B** build: one Linux victim VM (Docker: DVWA + Juice Shop) + one Windows endpoint VM.
-- **Kali runs locally** (VirtualBox/VMware) — kept off Azure billing and off Azure's
-  offensive-use surface.
-- Target cost over a few days of disciplined use: **~RM0** (approx. $10–15 of the $200 free
-  credit). See `docs/00-cost-and-licensing.md`.
+- **Container-based build (Option A):** victims (DVWA + Juice Shop) and the Kali attacker all run
+  as **private Azure Container Instances** — no VMs (the Bsv2 VM quota was 0 and a quota increase
+  was denied). ACI bills per second while running and **$0** when stopped or destroyed.
+- Log Analytics / Sentinel stayed within the free tiers for a home lab.
+- Actual cost: a few dollars of the $200 free credit; the environment was then **torn down to $0**.
+  See `docs/00-cost-and-licensing.md`.
 
 ## Architecture
 
@@ -43,27 +44,32 @@ The rendered diagram is shown above. See the [architecture notes](architecture/R
 
 | Phase | Topic | Status |
 |------|-------|--------|
-| 0 | Azure account + budget alerts + cost guardrails | done |
-| 1 | Resource group + Terraform skeleton | done |
-| 2 | VNet / subnets / NSGs (private, Option A) | done — VNet 10.20.0.0/16, delegated subnets, NSG attacker→victim only |
-| 3 | Victim apps (DVWA + Juice Shop) on ACI | done — private IPs 10.20.1.4 / 10.20.1.5 |
-| 4 | Kali attacker + connectivity | done — in-VNet ACI 10.20.2.4, exec access, reachability verified |
-| 5 | Windows endpoint VM (JIT, no public IP) | blocked — VM quota (deferred; not needed for web-app attacks) |
-| 6 | Log Analytics workspace + logs | done — ACI diagnostics + Activity Log flowing |
-| 7 | Microsoft Sentinel + connectors | Sentinel + Azure Activity done; Defender connectors pending |
-| 8 | Entra ID: RBAC / MFA / Conditional Access | pending (MFA enabled manually; phase not built) |
-| 9 | Defender for Cloud + Defender for Endpoint/XDR | pending (DfC free CSPM tier works without a VM) |
-| 10 | KQL foundations | Activity Log queries done + verified |
-| 11–13 | 10 attack → detect → investigate → respond exercises | playbooks 01 + 03 drafted; **execution blocked on ACI log pipeline** |
-| 14 | Sentinel detection engineering | pending |
-| 15 | Incident response + remediation | pending |
-| 16 | Portfolio packaging + final report | pending |
+| 0 | Azure account + budget alerts + cost guardrails | ✅ done |
+| 1 | Resource group + Terraform skeleton | ✅ done |
+| 2 | VNet / subnets / NSGs (private, Option A) | ✅ done — VNet 10.20.0.0/16, delegated subnets, NSG attacker→victim only |
+| 3 | Victim apps (DVWA + Juice Shop) on ACI | ✅ done — private IPs 10.20.1.4 / 10.20.1.5 |
+| 4 | Kali attacker + connectivity | ✅ done — in-VNet ACI 10.20.2.4, exec access, reachability verified |
+| 5 | Windows endpoint VM (JIT, no public IP) | ⛔ blocked — Bsv2 VM quota = 0, increase **denied** by Azure (this is why the lab uses containers; not needed for web-app attacks) |
+| 6 | Log Analytics workspace + logs | ✅ done — ACI diagnostics + Activity Log flowing; pipeline verified |
+| 7 | Microsoft Sentinel + connectors | 🟡 partial — Sentinel + Azure Activity live; Defender connectors not fully validated |
+| 8 | Entra ID: RBAC / MFA / Conditional Access | 🟡 partial — **MFA now enforced via Security Defaults** (found it was off, turned it on); RBAC/CA pending |
+| 9 | Defender for Cloud + Defender for Endpoint/XDR | ⬜ mostly pending — honest coverage-gap note written; endpoint EDR blocked by Phase 5 quota |
+| 10 | KQL foundations | ✅ done — Activity Log queries verified |
+| 11–13 | Attack → detect → investigate → respond exercise | ✅ **SQLi (A03) complete** — full A→B→C→D cycle; log pipeline unblocked and verified |
+| 14 | Sentinel detection engineering | ✅ done — scheduled analytics rule fired High incidents automatically, then tuned (150→1) |
+| 15 | Incident response + remediation | ✅ done — full IR lifecycle on the SQLi incident (triage → contain → eradicate → recover → lessons) |
+| 16 | Portfolio packaging + final report | ✅ done — published to GitHub; final report at `reports/final-report.md` |
 
-### Minimum path to "ready to attack" (current focus)
-1. ✅ Honest status (this table)
-2. ⏳ Wire ACI container logs → Log Analytics (so attacks are visible to Sentinel)
-3. ⏳ Verify a victim request lands in a queryable table
-4. ⏳ (recommended) Enable Defender for Cloud free CSPM tier
+### Project outcome
+The SOC loop is **fully demonstrated** end to end: telemetry → KQL hunting → detection
+engineering (analytics rule + tuning) → incident → investigation → response. The representative
+exercise was **SQL injection (OWASP A03 / MITRE T1190)** against DVWA. See the step-by-step
+walkthrough and evidence in [`documentation/`](documentation/) and the
+[final report](reports/final-report.md).
+
+> **Scope note:** the goal was demonstrating SOC capability across Azure, not exhausting all 10
+> OWASP categories — one thoroughly executed exercise covers the full lifecycle. The Azure
+> environment has since been **torn down to $0**.
 
 ## Repository structure
 
@@ -88,4 +94,5 @@ azure-red-blue-team-lab/
 
 - All offensive activity is confined to this lab's intentionally vulnerable assets.
 - No real credentials, secrets, tokens, or personal data are committed to this repo.
-- The vulnerable Linux VM's public IP is restricted by NSG to a single home IP address.
+- **No public ingress anywhere:** the victim containers have private IPs only and are reachable
+  solely from the attacker subnet via the NSG; the analyst reaches Kali via `az container exec`.
